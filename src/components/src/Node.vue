@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { Types, Enums } from '@/resources'
 import { Socket, OptionsMenu } from '@/components'
-import { useLayers, useNodes, useConnections, useModes } from '@/composables'
+import { useLayers, useNodes, useConnections } from '@/composables'
 
 const {
   layers,
@@ -17,14 +17,13 @@ const {
 } = useNodes()
 
 const {
-  editMode
-} = useModes()
-
-const {
   startConnection
 } = useConnections(nodes, layers)
 
-const props = defineProps<{ node: Types.Node }>()
+const props = defineProps<{
+  node: Types.Node
+  edit: boolean
+}>()
 const emit = defineEmits<{
   (e: 'drag', event: MouseEvent, node: Types.Node): void
   (e: 'resize', event: MouseEvent, node: Types.Node): void
@@ -68,7 +67,7 @@ const selected = computed(() => isNodeSelected(props.node))
     <div class="absolute top-0 left-0 h-full flex items-center -translate-x-1/2">
       <div class="flex flex-col gap-2">
         <Socket
-            v-if="editMode"
+            v-if="edit"
             :data-node-id="node.id"
             data-socket-type="input"
             @mousedown="(e: MouseEvent) => startConnection(e, node.id, 'input')"
@@ -79,7 +78,7 @@ const selected = computed(() => isNodeSelected(props.node))
     <div class="absolute top-0 right-0 h-full flex items-center translate-x-1/2">
       <div class="flex flex-col gap-2">
         <Socket
-            v-if="editMode"
+            v-if="edit"
             :data-node-id="node.id"
             data-socket-type="output"
             @mousedown="(e: MouseEvent) => startConnection(e, node.id, 'output')"
@@ -94,10 +93,10 @@ const selected = computed(() => isNodeSelected(props.node))
       <VIcon class="text-gray-400" icon="mdi-resize-bottom-right"/>
     </div>
 
-    <template v-if="editMode">
+    <template v-if="edit">
       <VTextField v-model="node.label" variant="outlined" density="compact" hide-details/>
       <OptionsMenu
-          :show="editMode"
+          :show="edit"
           :items="menuItems"
           :module="Enums.Module.NODE"
           :node="node"

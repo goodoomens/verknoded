@@ -53,6 +53,7 @@ onMounted(createLayer)
       <template v-for="node in nodes" :key="node.id">
         <Node
             :node="node"
+            :edit="editMode"
             :visible="isNodeVisible(node)"
             :selected="isNodeSelected(node)"
             @drag="dragNode"
