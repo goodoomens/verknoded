@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineEmits, defineProps } from 'vue'
+import { computed } from 'vue'
 import { Types, Enums } from '@/resources'
 import { Socket, OptionsMenu } from '@/components'
 import { useLayers, useNodes, useConnections, useModes } from '@/composables'

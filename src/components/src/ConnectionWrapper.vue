@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineProps, ref } from 'vue'
+import { ref } from 'vue'
 import { Types } from '@/resources'
 import { useNodes, useLayers, useConnections } from '@/composables'
 import { ColorMenu, Connection, ConnectionTemp } from '@/components'

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps, withDefaults } from 'vue'
 import { Types, Enums } from '@/resources'
 
 const props = withDefaults(defineProps<{
