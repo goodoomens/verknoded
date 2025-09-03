@@ -1,18 +1,10 @@
 export default {
-  content: [
-    './index.html',
-    './src/**/*.{vue,js,ts,jsx,tsx}'
-  ],
-  safelist: [
-    {
-      pattern: /bg-./,
-      variants: ['hover']
+    content: [
+        "./index.html",
+        "./src/**/*.{vue,js,ts,jsx,tsx}"
+    ],
+    theme: {
+        extend: {}
     },
-    {
-      pattern: /stroke-./
-    },
-    {
-      pattern: /fill-./
-    }
-  ]
+    plugins: []
 }

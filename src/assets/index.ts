@@ -1,0 +1,1 @@
+export { default as logo } from './src/verknoded_logo.svg'
